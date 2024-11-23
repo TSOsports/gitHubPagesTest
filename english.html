@@ -118,7 +118,7 @@
 
         .sports-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             padding: 20px;
         }
@@ -132,7 +132,6 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            text-decoration: none;
             color: var(--text-color);
             display: flex;
             flex-direction: column;
@@ -140,26 +139,9 @@
             gap: 15px;
         }
 
-        .sport-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, var(--primary-color), var(--secondary-color));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-        }
-
         .sport-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
-        }
-
-        .sport-card:hover::before {
-            opacity: 0.1;
         }
 
         .sport-icon {
@@ -171,10 +153,6 @@
             z-index: 2;
         }
 
-        .sport-card:hover .sport-icon {
-            transform: scale(1.1);
-        }
-
         .sport-title {
             font-size: 1.2em;
             font-weight: 600;
@@ -183,32 +161,22 @@
             z-index: 2;
         }
 
-        .watch-button {
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 12px;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
+        .video-container {
+            width: 100%;
             position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
         }
 
-        .sport-card:hover .watch-button {
-            background: var(--secondary-color);
-        }
-
-        .youtube-icon {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         @media (max-width: 768px) {
@@ -217,7 +185,7 @@
             }
 
             .sports-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 20px;
                 padding: 10px;
             }
@@ -250,139 +218,126 @@
                 <i class="fas fa-trophy"></i>
             </div>
             <h1>Learn Sports Rules</h1>
-            <p class="subtitle">Click on any sport below to watch our detailed explanation of its rules and regulations</p>
+            <p class="subtitle">Watch our detailed explanation of sports rules and regulations</p>
         </div>
 
         <div class="sports-grid">
             <!-- Pickleball -->
-            <a href="https://youtu.be/E2oPdIDV5nc" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-table-tennis sport-icon"></i>
                 <h3 class="sport-title">Pickleball</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/E2oPdIDV5nc" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Baseball -->
-            <a href="https://www.youtube.com/watch?v=E160D..." class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-baseball-ball sport-icon"></i>
                 <h3 class="sport-title">Baseball</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/E160D" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Golf -->
-            <a href="https://youtu.be/mRknA-YtRuM" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-golf-ball sport-icon"></i>
                 <h3 class="sport-title">Golf</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/mRknA-YtRuM" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Tennis -->
-            <a href="https://youtu.be/TuM5Uh4ii3Q" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-baseball sport-icon"></i>
                 <h3 class="sport-title">Tennis</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/TuM5Uh4ii3Q" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- American Football -->
-            <a href="https://youtu.be/CfuH9N_67Pk" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-football-ball sport-icon"></i>
                 <h3 class="sport-title">American Football</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/CfuH9N_67Pk" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Basketball -->
-            <a href="https://youtu.be/SBBvTI-cvik" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-basketball-ball sport-icon"></i>
                 <h3 class="sport-title">Basketball</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/SBBvTI-cvik" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Cricket -->
-            <a href="https://youtu.be/M5MD5i6VpYQ" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-cricket-bat-ball sport-icon"></i>
                 <h3 class="sport-title">Cricket</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/M5MD5i6VpYQ" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Soccer -->
-            <a href="https://youtu.be/dFLaabgXhpc" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-futbol sport-icon"></i>
                 <h3 class="sport-title">Soccer</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dFLaabgXhpc" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Volleyball -->
-            <a href="https://youtu.be/hLZ44KBWEbo" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-volleyball-ball sport-icon"></i>
                 <h3 class="sport-title">Volleyball</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/hLZ44KBWEbo" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Ice Hockey -->
-            <a href="https://youtu.be/JFaPf7Kl6aU" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-hockey-puck sport-icon"></i>
                 <h3 class="sport-title">Ice Hockey</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/JFaPf7Kl6aU" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- UFC -->
-            <a href="https://youtu.be/5CgVaLgmeUU" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-fist-raised sport-icon"></i>
                 <h3 class="sport-title">UFC</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/5CgVaLgmeUU" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- F1 -->
-            <a href="https://youtu.be/lqbc_Lg8Wow" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-flag-checkered sport-icon"></i>
                 <h3 class="sport-title">Formula 1</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/lqbc_Lg8Wow" allowfullscreen></iframe>
+                </div>
+            </div>
 
             <!-- Field Hockey -->
-            <a href="https://youtu.be/M83C70ILng0" class="sport-card" target="_blank">
+            <div class="sport-card">
                 <i class="fas fa-hockey-stick sport-icon"></i>
                 <h3 class="sport-title">Field Hockey</h3>
-                <span class="watch-button">
-                    <i class="fab fa-youtube youtube-icon"></i>
-                    Watch Rules
-                </span>
-            </a>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/M83C70ILng0" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </body>
