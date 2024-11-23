@@ -14,7 +14,7 @@
             --accent-color: #3b82f6;
             --background-color: #f0f9ff;
             --text-color: #1e293b;
-            --accent-orange: #FF6B35;
+            --card-bg: rgba(255, 255, 255, 0.95);
         }
 
         * {
@@ -29,16 +29,26 @@
             color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
         }
 
-        /* Floating Home Button */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(120deg, #e0f2fe, #f0f9ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .home-button-float {
             position: fixed;
             top: 20px;
@@ -88,40 +98,19 @@
             opacity: 1;
         }
 
-        .background-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #2563eb15, #1e40af15);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
@@ -140,163 +129,199 @@
             font-size: 2.5em;
             color: var(--primary-color);
             margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
         }
 
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50%;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        .content {
-            margin: 40px 0;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-        }
-
-        p {
+        .subtitle {
             font-size: 1.2em;
             color: #64748b;
-            margin-bottom: 20px;
-            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .features {
+        .sports-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .feature-card {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
             padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
         }
 
-        .feature-card:hover {
+        .sport-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sport-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
         }
 
-        .feature-icon {
-            font-size: 2em;
+        .sport-icon {
+            font-size: 2.5em;
             color: var(--primary-color);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
 
-        .sports-icons {
+        .sport-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-container {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .video-container iframe {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: -1;
+            border: none;
         }
 
-        .sports-icon {
-            position: absolute;
-            color: rgba(37, 99, 235, 0.1);
-            animation: float 20s linear infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .container {
-                padding: 30px 20px;
+                padding: 60px 15px 30px;
+            }
+
+            .sports-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 10px;
+            }
+
+            .sport-card {
+                padding: 20px;
             }
 
             h1 {
                 font-size: 2em;
             }
 
-            p {
+            .subtitle {
                 font-size: 1em;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .home-button-float {
-                top: 10px;
-                left: 10px;
-                padding: 12px;
-            }
-
-            .home-button-float i {
-                font-size: 20px;
-            }
-
-            .home-button-float::after {
-                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Home Button -->
+    <div class="background-animation"></div>
+    
+    <!-- Home Button -->
     <a href="index.html" class="home-button-float">
         <i class="fas fa-home"></i>
     </a>
 
-    <div class="background-animation"></div>
-    <div class="sports-icons">
-        <!-- Animated sports icons -->
-        <i class="fas fa-cricket-bat-ball sports-icon" style="left: 10%; animation-delay: 0s;"></i>
-        <i class="fas fa-running sports-icon" style="left: 30%; animation-delay: 3s;"></i>
-        <i class="fas fa-trophy sports-icon" style="left: 50%; animation-delay: 6s;"></i>
-        <i class="fas fa-medal sports-icon" style="left: 70%; animation-delay: 9s;"></i>
-        <i class="fas fa-flag-checkered sports-icon" style="left: 90%; animation-delay: 12s;"></i>
-    </div>
-    
     <div class="container">
-        <div class="logo">
-            <i class="fas fa-trophy"></i>
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h1>खेल के नियम जानें</h1>
+            <p class="subtitle">विभिन्न खेलों के नियमों और विनियमों की विस्तृत व्याख्या देखें</p>
         </div>
-        
-        <h1>TSO Sports में आपका स्वागत है</h1>
-        
-        <div class="content">
-            <p>खेल प्रेमियों के लिए सर्वश्रेष्ठ गंतव्य में आपका स्वागत है! TSO Sports पर हम आपके पसंदीदा खेलों की विस्तृत कवरेज प्रदान करते हैं, ताज़ा समाचारों से लेकर गहन विश्लेषण तक।</p>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-newspaper feature-icon"></i>
-                    <h3>ताज़ा समाचार</h3>
-                    <p>खेल जगत की ताज़ा खबरों और घटनाओं से अपडेट रहें</p>
+
+        <div class="sports-grid">
+            <!-- Basketball -->
+            <div class="sport-card">
+                <i class="fas fa-basketball-ball sport-icon"></i>
+                <h3 class="sport-title">बास्केटबॉल</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/q-v9LsFpMpI" allowfullscreen></iframe>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line feature-icon"></i>
-                    <h3>लाइव स्कोर</h3>
-                    <p>सभी मैचों के लाइव स्कोर और अपडेट्स</p>
+            </div>
+
+            <!-- Volleyball -->
+            <div class="sport-card">
+                <i class="fas fa-volleyball-ball sport-icon"></i>
+                <h3 class="sport-title">वॉलीबॉल</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/89uoKRtA56U" allowfullscreen></iframe>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-video feature-icon"></i>
-                    <h3>विशेष कवरेज</h3>
-                    <p>विशेष रिपोर्ट्स और एक्सक्लूसिव कंटेंट</p>
+            </div>
+
+            <!-- Tennis -->
+            <div class="sport-card">
+                <i class="fas fa-baseball sport-icon"></i>
+                <h3 class="sport-title">टेनिस</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/KRPbCFX195o" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Football -->
+            <div class="sport-card">
+                <i class="fas fa-futbol sport-icon"></i>
+                <h3 class="sport-title">फुटबॉल</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/FndO270QFWo" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Cricket -->
+            <div class="sport-card">
+                <i class="fas fa-cricket-bat-ball sport-icon"></i>
+                <h3 class="sport-title">क्रिकेट</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Yz4gK8wO0n0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Golf -->
+            <div class="sport-card">
+                <i class="fas fa-golf-ball sport-icon"></i>
+                <h3 class="sport-title">गोल्फ</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/9ECjU2-iLAk" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Hockey -->
+            <div class="sport-card">
+                <i class="fas fa-hockey-puck sport-icon"></i>
+                <h3 class="sport-title">हॉकी</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/CWBaIIXS3_8" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Table Tennis -->
+            <div class="sport-card">
+                <i class="fas fa-table-tennis sport-icon"></i>
+                <h3 class="sport-title">टेबल टेनिस</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/H3pDIop_uNk" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Baseball -->
+            <div class="sport-card">
+                <i class="fas fa-baseball-ball sport-icon"></i>
+                <h3 class="sport-title">बेसबॉल</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/z1GG38ezozY" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
