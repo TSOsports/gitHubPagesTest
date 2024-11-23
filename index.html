@@ -4,53 +4,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TSO Sports - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --background-color: #f0f9ff;
+            --text-color: #1e293b;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            background-color: #f0f0f0;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #2563eb15, #1e40af15);
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
-            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo i {
+            font-size: 48px;
+            color: var(--primary-color);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #64748b;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .language-options {
-            margin-top: 30px;
             display: flex;
             gap: 20px;
             justify-content: center;
+            flex-wrap: wrap;
         }
+
         .language-button {
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 15px 30px;
+            font-size: 1.1em;
             cursor: pointer;
-            background-color: #007bff;
+            background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
         .language-button:hover {
-            background-color: #0056b3;
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .language-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .language-button i {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .language-button {
+                padding: 12px 24px;
+                font-size: 1em;
+            }
+        }
+
+        /* Sports-themed animated background elements */
+        .sports-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .sports-icon {
+            position: absolute;
+            color: rgba(37, 99, 235, 0.1);
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="background-animation"></div>
+    <div class="sports-icons">
+        <!-- Animated sports icons in background -->
+        <i class="fas fa-basketball-ball sports-icon" style="left: 10%; animation-delay: 0s;"></i>
+        <i class="fas fa-football-ball sports-icon" style="left: 30%; animation-delay: 3s;"></i>
+        <i class="fas fa-baseball-ball sports-icon" style="left: 50%; animation-delay: 6s;"></i>
+        <i class="fas fa-table-tennis sports-icon" style="left: 70%; animation-delay: 9s;"></i>
+        <i class="fas fa-volleyball-ball sports-icon" style="left: 90%; animation-delay: 12s;"></i>
+    </div>
     <div class="container">
+        <div class="logo">
+            <i class="fas fa-trophy"></i>
+        </div>
         <h1>Welcome to TSO Sports</h1>
-        <p>Please select your preferred language:</p>
+        <p>Experience sports like never before. Choose your preferred language to continue your journey into the world of sports excellence.</p>
         <div class="language-options">
-            <a href="english.html" class="language-button">English</a>
-            <a href="hindi.html" class="language-button">Hindi</a>
+            <a href="english.html" class="language-button">
+                <i class="fas fa-language"></i>
+                English
+            </a>
+            <a href="hindi.html" class="language-button">
+                <i class="fas fa-language"></i>
+                हिंदी
+            </a>
         </div>
     </div>
 </body>
